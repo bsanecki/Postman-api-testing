@@ -270,7 +270,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\"title\":\"Tablet\",\"price\":399,\"category\":\"electronics\"}",
+              "raw": "{\"title\":\"\",\"price\":\"free\"}",
               "options": {
                 "raw": {
                   "language": "json"
