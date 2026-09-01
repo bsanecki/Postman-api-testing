@@ -18,17 +18,20 @@ jobs:
           node-version: 20
 
       - name: Install Newman
-        run: npm install -g newman
+        run: npm install -g newman newman-reporter-htmlextra
 
       - name: Run Postman tests
         run: |
-          newman run projects/postman-api-ci-github-actions/postman-api-ci-cd.postman_collection.json \
-            --reporters cli,json \
-            --reporter-json-export projects/postman-api-ci-github-actions/reports/results.json
+          mkdir -p projects/postman-api-ci-github-actions/reports
 
-      - name: Upload test results
+          newman run projects/postman-api-ci-github-actions/postman-api-ci-cd.postman_collection.json \
+            --reporters cli,json,htmlextra \
+            --reporter-json-export projects/postman-api-ci-github-actions/reports/results.json \
+            --reporter-htmlextra-export projects/postman-api-ci-github-actions/reports/report.html
+
+      - name: Upload test reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: postman-test-results
-          path: projects/postman-api-ci-github-actions/reports/results.json
+          name: postman-test-reports
+          path: projects/postman-api-ci-github-actions/reports/
