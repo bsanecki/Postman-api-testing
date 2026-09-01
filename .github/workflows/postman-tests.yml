@@ -23,14 +23,18 @@ jobs:
       - name: Install Newman
         run: npm install -g newman newman-reporter-htmlextra
 
+      - name: Create report directory
+        run: |
+          TIMESTAMP=$(date -u +"%Y-%m-%d_%H-%M-%S")
+          echo "REPORT_DIR=projects/postman-api-ci-github-actions/reports/$TIMESTAMP" >> $GITHUB_ENV
+          mkdir -p "projects/postman-api-ci-github-actions/reports/$TIMESTAMP"
+
       - name: Run Postman tests
         run: |
-          mkdir -p projects/postman-api-ci-github-actions/reports
-
           newman run projects/postman-api-ci-github-actions/postman-api-ci-cd.postman_collection.json \
             --reporters cli,json,htmlextra \
-            --reporter-json-export projects/postman-api-ci-github-actions/reports/results.json \
-            --reporter-htmlextra-export projects/postman-api-ci-github-actions/reports/report.html
+            --reporter-json-export "$REPORT_DIR/results.json" \
+            --reporter-htmlextra-export "$REPORT_DIR/report.html"
 
       - name: Upload test reports
         if: always()
