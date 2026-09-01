@@ -1,14 +1,21 @@
 # Postman API CI/CD
 
-Project demonstrating automated API testing with Postman, Postman CLI and GitHub Actions.
+Automated API testing with Postman, Newman and GitHub Actions.
 
-## Scope
+## Tech Stack
 
-- Postman Collection
-- Postman CLI
-- Automated API test execution
+- Postman
+- JavaScript
+- Newman
 - GitHub Actions
-- CI workflow
-- Test results and failure detection
+- REST API
 
-The collection is executed automatically through GitHub Actions to verify that API tests pass before changes are accepted.
+## Features
+
+- Automated API tests
+- CI/CD pipeline
+- PASS/FAIL detection
+- HTML and JSON test reports
+- Timestamped test results
+
+Tests are automatically executed through GitHub Actions after changes to the repository.
