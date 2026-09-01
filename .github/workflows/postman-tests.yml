@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Postman collection
         run: |
-          newman run postman/postman-api-ci-cd.postman_collection.json \
+          newman run postman-api-ci-cd.postman_collection.json \
             --reporters cli,json \
             --reporter-json-export results.json
 
